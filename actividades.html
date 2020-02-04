@@ -1,0 +1,135 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MTS</title>
+    <!--This libs are necessary for performing the cloudant conexion -->
+      <script src="/librerias/pouchdb-6.4.1.js"></script>
+      <script src="/librerias/pouchdb.find.js"></script>
+
+      <script src="/librerias/jquery-2.1.3.js"></script>
+      <script src="/librerias/jquery-3.2.1.js"></script>
+    <!--******************************************************************-->
+
+    <!-- Bootstrap core CSS -->
+        <link href="/librerias/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        }
+
+        @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <script src="/js/actividades.js"></script>
+    <script src="/js/cierre.js"></script>
+    </head>
+    <body onload="sessionCheckUsuario()">
+        <nav class="navbar bg-nav fixed-top flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-3 col-lg-2 mr-0" style="text-align: center;" href="menu.html"><img width="100px" src="/images/logo-blanco.png"></a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap" >
+                    <a href="user_manager.html" style="animation: none; color: ghostwhite;"><h4 id="nombreUsuario" style="color: white;">Hola</h4></a>
+                </li>
+                <li class="text-nowrap"  style="align-content: center;">
+                    <button onclick="cerrar_sesion()" class="btn btn-lg btn-block" style="color:ghostwhite;">LOG OUT</button>
+                 </li>
+            </ul>
+
+
+        </nav>
+        <div class="container-fluid">
+            <div class="row" style="padding-top:100px; text-align: center; vertical-align:middle;">
+                <div class="col-md-9 col-xs-9 col-lg-9" style="text-align: left;" >
+                    <button onclick="regresarInfo()" type="button" class="btnAsignados btn-3 btn" style="background-color:transparent; color:#633a82; border-color: #633a82; border: 1px solid;">
+                        <img src="../myteamskills/images/back.png" width="20" /> Regresar
+                    </button>
+                </div>
+                <div class="col-md-9 col-xs-9 col-lg-9" style="text-align: left;" >
+                    <h4 style="color: #1f515e;">NOMBRE:<span id="nombre" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                </div>
+                <div class="col-md-3 col-xs-3 col-lg-3" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">CODIGO EMPLEADO:<span id="code_emp" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-9 col-xs-9 col-lg-9" style="text-align: left;" >
+                  <h4 style="color: #1f515e;">FIRST MANAGER:<span  id="first_mg" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                </div>
+                <div class="col-md-3 col-xs-3 col-lg-3" style="text-align: left;" >
+                  <h5 style="color: #1f515e;">MANAGER CODE:<span  id="code_mgf" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-12 col-xs-12 col-lg-12" style="text-align: left;" >
+                  <h5 style="color: #1f515e;">SECOND MANAGER:<span  id="second_mg" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">CLASIFICACIÓN AREA DE SERVICIO:<span  id="area_servicio" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">CODIGO CLASIFICACIÓN AREA SERVICIO:<span  id="code_area" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">AREA DE SERVICIO:<span  id="description" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">CODIGO AREA SERVICIO:<span  id="tab_code" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-12 col-xs-12 col-lg-12" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">NIVEL 1:<span  id="level2" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-12 col-xs-12 col-lg-12" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">NIVEL 2:<span  id="level3" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-12 col-xs-12 col-lg-12" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">NIVEL 3:<span  id="level4" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-12 col-xs-12 col-lg-12" style="text-align: left;" >
+                    <h5 style="color: #1f515e;">COMPLEJIDAD:<span  id="complexity" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #633a82;">ACTUALIZÓ:<span  id="updated_by" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6" style="text-align: left;" >
+                    <h5 style="color: #633a82;">ULTIMA ACTUALIZACIÓN:<span  id="last_update" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h5>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-6 col-lg-6 col-xs-6" style="padding: 20px;">
+                    <h2>Acividades</h2>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-6" style="padding: 20px;">
+                    <h2>Sub-Actividades</h2>
+                </div>
+                <div class="col-md-12 col-lg-12 col-xs-12">
+                    <table class="table table-hover table-bordered">
+                        <thead style="background-color: #633a82;color: white;">
+                            <tr>
+                                <th scope="col">SELECCIONA </th>
+                                <th scope="col">ACTIVIDAD</th>
+                                <th scope="col">SELECCIONA</th>
+                                <th scope="col">SUB-ACTIVIDAD</th>
+                            </tr>
+                        </thead>
+                    <tbody id="bodyTable">
+                    </tbody>
+                    </table>
+                    <div>
+                        <button onclick="actividades()" type="button" class=" btnAsignados btn-3 btn" style="background-color:#633a82">Submit</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+          </div>
+    </body>
+
+</html>

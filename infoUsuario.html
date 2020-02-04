@@ -1,0 +1,149 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MTS</title>
+    <!--This libs are necessary for performing the cloudant conexion -->
+      <script src="/librerias/pouchdb-6.4.1.js"></script>
+      <script src="/librerias/pouchdb.find.js"></script>
+
+      <script src="/librerias/jquery-2.1.3.js"></script>
+      <script src="/librerias/jquery-3.2.1.js"></script>
+    <!--******************************************************************-->
+
+    <!-- Bootstrap core CSS -->
+        <link href="/librerias/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        }
+
+        @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <script src="/js/menu.js"></script>
+    <script src="/js/cierre.js"></script>
+    </head>
+    <body onload="sessionCheckUsuario()">
+        <nav class="navbar bg-nav fixed-top flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-sm-3 col-md-3 col-lg-2 mr-0" style="text-align: center;" href="menu.html"><img width="80px" src="/images/logo-blanco.png"></a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap" >
+                    <a href="user_manager.html" style="animation: none; color: ghostwhite;"><h4 id="nombreUsuario" style="color: white;">Hola</h4></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid"  >
+            <div class="row">
+                <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+                  <div class="sidebar-sticky">
+                    <h3 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" style="padding-top: 20px;">
+                      <span style="font-size: .80em!important; color:white; text-align: center;">Información</span>
+                    </h3>
+                    <ul class="nav flex-column">
+                      <li class="nav-item" >
+                        <img src="/images/avatar-w.png" alt="Avatar" class="avatar">
+                      </li>
+                    </ul>
+                    <li class="text-nowrap"  style="align-content: center;">
+                         <button onclick="cerrar_sesion()" class="btn btn-lg btn-block" style="color:ghostwhite;">LOG OUT</button>
+                     </li>
+                  </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="row" style="padding-top:60px; text-align: center; vertical-align:middle;">
+                        <div class="col-md-12 col-xs-12 col-lg-12" style="margin: 0px; padding: 0px; text-align: left;" >
+                            <h4 style="color: #1f515e;">NOMBRE:<span id="nombre" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-md-12 col-xs-12 col-lg-12" style="margin: 0px; padding: 0px; text-align: left;" >
+                            <h4 style="color: #1f515e;">CODIGO EMPLEADO:<span id="code_emp" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-md-12 col-xs-12 col-lg-12" style="margin: 0px; padding: 0px; text-align: left;" >
+                          <h4 style="color: #1f515e;">FIRST MANAGER:<span  id="first_mg" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                        </div>
+                        <div class="col-md-12 col-xs-12 col-lg-12" style="margin: 0px; padding: 0px; text-align: left;" >
+                          <h4 style="color: #1f515e;">FIRST MANAGER CODE:<span  id="code_mgf" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                        </div>
+                        <div class="col-md-12 col-xs-12 col-lg-12" style="margin: 0px; padding: 0px; text-align: left;" >
+                          <h4 style="color: #1f515e;">SECOND MANAGER:<span  id="second_mg" style="padding-left: 20px; color: black; text-transform: uppercase;"></span></h4>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <label style="color: #1f515e; font-size: 1.5rem;font-weight: 500;line-height: 1.2;">AREA DE SERVICIO:</label>
+                          <br>
+                          <select id="selectAreaServicio" class="form-control" onchange="selectAreaServicio()" >
+                            <option selected>Selecciona Area de Servicio</option>
+                          </select>
+                          <br>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <h5 style="color: #1f515e;">SELECCIONA NIVEL2:</h5>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <select  id="selectNivel2" class="form-control"  onchange="selectLevel2()" >
+                            <option selected>Selecciona Nivel 2</option>
+                          </select>
+                          <br>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <h5 style="color: #1f515e;">SELECCIONA NIVEL 3:</h5>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <select id="selectNivel3" class="form-control"  onchange="selectLevel3()">
+                            <option selected>Selecciona Nivel 3</option>
+
+                          </select>
+                          <br>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <h5 style="color: #1f515e;">SELECCIONA NIVEL 4:</h5>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <select id="selectNivel4" class="form-control"  onchange="selectComplexity()" >
+                            <option selected>Selecciona Nivel 4</option>
+                          </select>
+                          <br>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <h5 style="color: #1f515e;">SELECCIONA COMPLEJIDAD:</h5>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="margin: 0px; padding: 0px; text-align: left;">
+                          <select id="complexity" class="form-control">
+                            <option selected>Selecciona una complejidad</option>
+
+                          </select>
+                          <br>
+                        </div>
+                        <div class="col-md-12 col-xs-12 col-lg-12">
+                          <button id="btnAsignados" class="btnAsignados btn-3 " onclick="guardarDatos()">Submit</button>
+                        </div>
+                      </div>
+                </main>
+              </div>
+        </div>
+    </body>
+
+</html>

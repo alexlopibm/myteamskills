@@ -1,0 +1,99 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MTS</title>
+
+    <!-- Bootstrap core CSS -->
+     <link href="/librerias/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="/js/index.js "></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+        <!--This libs are necessary for performing the cloudant conexion -->
+        <script src="/librerias/pouchdb-6.4.1.js"></script>
+        <script src="/librerias/pouchdb.find.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+<!--    <script src="js/misRecursos.js"></script>-->
+    <script src="/js/table_generatiorV1.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/infoUsuario.js"></script>
+    <script src="/js/cierre.js"></script>
+  </head>
+  <body onload="iniciarPagina()">
+    <nav class="navbar bg-nav fixed-top flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-3 col-lg-2 mr-0" style="text-align: center;" href="menu.html"><img width="100px" src="/images/logo-blanco.png"></a>
+    <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a href="user_manager.html" style="animation: none; color: ghostwhite;"><h4 id="nombreUsuario" style="color: white;">Hola</h4></a>
+    </li>
+    <li class="text-nowrap"  style="align-content: center;">
+        <button onclick="cerrar_sesion()" class="btn btn-lg btn-block" style="color:ghostwhite;">LOG OUT</button>
+    </li>
+  </ul>
+</nav>
+
+    <div class="container-fluid"  >
+      <div class="row" style="padding-top:160px; text-align: center; vertical-align:middle;">
+        <div class="col-md-4 col-xs-4 col-lg-4" >
+          <button onclick="btnMisRecursos()" class="aButton">
+            <span>MIS RECURSOS</span>
+          </button>
+          <!--<a class="aButton" onclick="btnMisRecursos()"><span>MIS RECURSOS</span></a>-->
+        </div>
+        <div class="col-md-4 col-xs-4 col-lg-4">
+          <button id="btnAsignados" onclick="btnAsignados()" class="btnAsignados btn-1 ">Clasificados</button>
+        </div>
+        <div class="col-md-4 col-xs-4 col-lg-4">
+          <button id="btnNoAsignados" onclick="btnNoAsignados()" class="btnAsignados btn-2 ">No Clasificados</button>
+        </div>
+      </div>
+        <div class="container">
+            <div class="row" style="width:100%!important;">
+                <div class="col-md-12 col-xs-12" style=" width:100%!important;padding:0px!important; margin:0px!important;">
+                    <div id="myTable_clasificados">
+                        <table class="table table-hover table-bordered" id="myTable_clasificados">
+                            <table class="table table-hover table-bordered"  id="lista_generalclasificados">
+                            </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="width:100%!important;">
+                <div class="col-md-12 col-xs-12" style=" width:100%!important;padding:0px!important; margin:0px!important;">
+                    <div id="myTable_noclasificados">
+                        <table class="table table-hover table-bordered" id="myTable_noclasificados">
+                            <table class="table table-hover table-bordered" id="lista_generalnoclasificados">
+                            </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

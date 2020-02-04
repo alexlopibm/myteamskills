@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MTS</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/librerias/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/index.js "></script>
+    <script src="/js/user_data.js"></script>
+    <script src="/js/menu.js"></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <script src="/librerias/pouchdb-6.4.1.js"></script>
+    <script src="/librerias/pouchdb.find.js"></script>
+
+    <script src="/librerias/jquery-2.1.3.js"></script>
+    <script src="/librerias/jquery-3.2.1.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+      <script src="/js/cierre.js"></script>
+
+  </head>
+  <body onload="data_extractor()">
+    <div>
+      <nav class="navbar bg-nav fixed-top flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-3 col-lg-2 mr-0" style="text-align: center;" href="menu.html"><img width="100px" src="/images/logo-blanco.png"></a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <h4 id="nombreUsuario" style="color: white;">Hola</h4>
+            </li>
+            <li class="text-nowrap"  style="align-content: center;">
+                <button onclick="cerrar_sesion()" class="btn btn-lg btn-block" style="color:ghostwhite;">LOG OUT</button>
+            </li>
+        </ul>
+        </nav>
+      </div>
+        <div class="card" style="margin-top:104px; text-align: center;">
+            <table class="table" >
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"><b>Information</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                        <th><b>User name</b></th>
+                        <td id="user_name_t" name="user_name_t"><input type="text" id="new_user_name_t" name="new_user_name_t"style="border: 0; background-color:transparent; text-align:center;"/></td>
+                    </tr>
+                    <tr>
+                        <th><b>User mail</b></th>
+                        <td id="user_mail_t" name="user_mail_t"><input type="text" id="new_user_mail_t" name="new_user_mail_t"style="border: 0; background-color:transparent; text-align:center;"/></td>
+                    </tr>
+                    <tr hidden>
+                        <th><b>User tool</b></th>
+                        <td id="tool_t" name="tool_t"><input type="text" id="new_tool_t" name="new_tool_t"style="border: 0; background-color:transparent; text-align:center:"/></td>
+                    </tr>
+                    <tr>
+                        <th><b>User roll</b></th>
+                        <td id="roll_t" name="roll_t"><input type="text" id="new_roll_t" name="new_roll_t"style="border: 0; background-color:transparent; text-align:center;"/></td>
+                    </tr>
+                    <tr>
+                        <th><b>User manager</b></th>
+                        <td id="manager_t" name="manager_t"><input type="text" id="new_manager_t" name="new_manager_t"style="border: 0; background-color:transparent; text-align:center;"/></td>
+                    </tr>
+                    <tr>
+                        <th><b>User Password</b></th>
+                        <td id="pass_t" name="pass_t"><input type="text" id="new_pass_t" name="new_pass_t" pattern="[a-zA-Z]{8}" style="border: 0; background-color:transparent; text-align:center;" /></td>
+                    </tr>
+                    <tr>
+                        <th><b>ID</b></th>
+                        <td style="text-align:center" id="idCodeEmploye" name="idCodeEmploye"></td>
+                    </tr>
+                    <tr>
+                    <th><b>Phone</b></th>
+                        <td id="phone_t" name="phone_t"><form><input type="number" maxlength="12" id="new_phone_t" name="new_phone_t" style="border: 0; background-color:transparent; text-align:center;" required/></form></td>
+                    </tr>
+                    <tr>
+                        <th><b>Approval Date</b></th>
+                        <td id="approval_date_t" name="approval_date_t"></td>
+                    </tr>
+              </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col"></div>
+            <div class="col"></div>
+          <div class="col" style="align-self: center;">
+              <button class="btn btn-primary" id="btn" onclick="update_infoinfra()">Update</button>
+            </div>
+          <div class="col">
+              <button class="btn btn-primary" id="btn2" onclick="update_infouser()">Update</button>
+            </div>
+          <div class="col"></div>
+        </div>
+</body>
+</html>
