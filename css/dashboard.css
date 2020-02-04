@@ -1,0 +1,362 @@
+
+
+body {
+  font-size: .875rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background-color: #0d2227;
+  color: white;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  font-size: 15px;
+  color: white;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color:white;
+}
+
+.sidebar .nav-link.active {
+  color: white;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+/*
+ * Content
+ */
+
+[role="main"] {
+  padding-top: 133px; /* Space for fixed navbar */
+}
+
+@media (min-width: 768px) {
+  [role="main"] {
+    padding-top: 48px; /* Space for fixed navbar */
+  }
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.nav-item{
+
+    border-bottom-width:3px;
+    border-bottom-style:solid;
+    border-bottom-color: white;
+    border-left-style:solid;
+    border-left-width:0px;
+    border-right-color:transparent;
+    border-right-style:solid;
+    border-right-width:0px;
+    border-top-color:transparent;
+    border-top-style:solid;
+    border-top-width:0px;
+}
+
+.bg-nav{
+  background-color: #151965;
+}
+
+
+.btn-floating{
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 0;
+  margin: 2px;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  width: 80%;
+  height: 80%;
+
+} 
+
+.btn-lg{
+  padding: 0.05rem .05rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+ 
+
+.btn-default{
+  color: #151965;
+  padding-top: 10px;
+  background-color: white !important;
+}
+
+.btn-default:hover {
+  background-color: #32407b;
+  box-shadow: 0px 15px 20px rgba(50, 64, 123, 1);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.aButton{
+  width: 200px;
+  height: 60px;
+  line-height: 40px;
+  font-size: inherit;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+  
+}
+
+.aButton span{
+  position: relative;
+  z-index: 2;
+  
+
+}
+
+.aButton:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #46b5d1;
+  transition: all .35s;
+
+}
+
+.aButton:hover{
+  color: white;
+}
+
+.aButton span:hover{
+  color: white;
+}
+
+
+
+.aButton:hover:after{
+  width: 100%;
+}
+
+/* General button style */
+.btnAsignados {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-decoration: none;
+  border: none;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 25px 80px;
+  display: inline-block;
+  margin: 15px 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btnAsignados:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+.btnAsignados:before {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-1 {
+  background: #151965;
+  color: #fff;
+}
+
+.btn-1:hover {
+  background: #151965;
+}
+
+.btn-1:active {
+  background: #151965;
+  top: 2px;
+}
+
+.btn-1:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
+
+.btn-2 {
+  background: #32407b;
+  color: #fff;
+}
+
+.btn-2:hover {
+  background: #32407b;
+}
+
+.btn-2:active {
+  background: #32407b;
+  top: 2px;
+}
+
+.btn-2:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
+
+
+
+.avatar {
+  vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: white;
+    border-radius: 100%;
+    padding-top: 30px;
+}
+
+.btn-3 {
+  background: #1f515e;
+  color: #fff;
+}
+
+.btn-3:hover {
+  background: #1f515e;
+}
+
+.btn-3:active {
+  background: #1f515e;
+  top: 2px;
+}
+
+.btn-3:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
+
+
+
